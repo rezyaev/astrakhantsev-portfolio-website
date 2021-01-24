@@ -15,12 +15,7 @@ export default function Header() {
 				<a className="mr-8" href="">
 					Work
 				</a>
-				<a className="mr-8" href="">
-					About
-				</a>
-				<a className="" href="">
-					Contact
-				</a>
+				<a href="">About</a>
 			</nav>
 		</header>
 	);
