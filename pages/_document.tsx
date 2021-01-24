@@ -5,11 +5,22 @@ export default class MyDocument extends Document {
 		return (
 			<Html className="h-full">
 				<Head />
-				<body className="h-full">
+				<Body>
 					<Main />
 					<NextScript />
-				</body>
+				</Body>
 			</Html>
 		);
 	}
+}
+
+type BodyProps = { children: JSX.Element[] };
+function Body({ children }: BodyProps) {
+	return (
+		<body className="relative grid h-full place-items-center">
+			<div className="absolute left-0 z-0 w-2/3 h-full bg-body-border-dark"></div>
+			<div className="absolute right-0 z-0 w-1/3 h-full bg-body-border-light"></div>
+			<div className="relative bg-white h-body w-body">{children}</div>
+		</body>
+	);
 }
