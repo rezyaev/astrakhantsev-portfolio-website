@@ -16,6 +16,9 @@ module.exports = {
 				"body-border-light": "#FFDF75",
 				"body-border-dark": "#FFCF2E",
 			},
+			fontFamily: {
+				sans: ["IBM Plex Sans", "Helvetica", "Arial", "sans-serif"],
+			},
 		},
 	},
 	variants: {
