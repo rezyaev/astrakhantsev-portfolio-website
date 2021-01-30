@@ -24,7 +24,7 @@ function Header() {
 	return (
 		<header className="flex justify-between pt-9 px-9">
 			<div className="flex">
-				<div className="mt-1 mr-8 bg-black rounded-full w-14 h-14"></div>
+				<div className="mt-1 bg-black rounded-full mr-9 w-14 h-14"></div>
 				<div className="text-xl">
 					<h1 className="font-bold">Yevgeniy Astrakhantsev</h1>
 					<h2 className="font-medium">
@@ -47,10 +47,10 @@ function Header() {
 
 function Footer() {
 	return (
-		<footer className="flex items-center justify-between pb-10 text-xl font-medium px-9">
-			<p>Based in Moscow, Russia</p>
+		<footer className="flex items-center justify-between py-10 text-xl font-medium px-9">
+			<address className="not-italic">Based in Moscow, Russia</address>
 
-			<address>
+			<address className="not-italic">
 				<a href="mailto:hello@evgeniyastrakhantsev.com">hello@evgeniyastrakhantsev.com</a>
 			</address>
 
