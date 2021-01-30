@@ -1,5 +1,7 @@
 import { SocialMediaLink } from "components/social-media-link";
 import { AppProps } from "next/dist/next-server/lib/router/router";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import "tailwindcss/tailwind.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -15,6 +17,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 }
 
 function Header() {
+	const router = useRouter();
+
+	const activeLinkClassName = "pb-1 border-b-2 border-trueGray-900";
+
 	return (
 		<header className="flex justify-between pt-9 px-9">
 			<div className="flex">
@@ -28,10 +34,12 @@ function Header() {
 			</div>
 
 			<nav className="text-xl font-medium">
-				<a className="mr-8" href="">
-					Work
-				</a>
-				<a href="">About</a>
+				<Link href="/">
+					<a className={`mr-8 ${router.pathname === "/" ? activeLinkClassName : ""}`}>Work</a>
+				</Link>
+				<Link href="/about">
+					<a className={router.pathname === "/about" ? activeLinkClassName : ""}>About</a>
+				</Link>
 			</nav>
 		</header>
 	);
