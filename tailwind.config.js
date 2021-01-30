@@ -10,6 +10,7 @@ module.exports = {
 			},
 			width: {
 				body: "calc(100% - 48px)",
+				128: "32rem",
 			},
 			height: {
 				body: "calc(100% - 48px)",
@@ -21,6 +22,9 @@ module.exports = {
 			},
 			fontFamily: {
 				sans: ["IBM Plex Sans", "Helvetica", "Arial", "sans-serif"],
+			},
+			listStyleType: {
+				dash: "'— '",
 			},
 		},
 	},
