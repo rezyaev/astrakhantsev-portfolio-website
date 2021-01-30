@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { SocialMediaLink } from "components/social-media-link";
 
 export default class MyDocument extends Document {
 	render() {
@@ -9,7 +10,11 @@ export default class MyDocument extends Document {
 				</Head>
 				<Body>
 					<Header />
-					<Main />
+					<main className="flex-1">
+						<Main />
+					</main>
+					<Footer />
+
 					<NextScript />
 				</Body>
 			</Html>
@@ -20,10 +25,10 @@ export default class MyDocument extends Document {
 type BodyProps = { children: JSX.Element[] };
 function Body({ children }: BodyProps) {
 	return (
-		<body className="relative grid h-full place-items-center">
+		<body className="relative grid h-full place-items-center text-trueGray-900">
 			<div className="absolute left-0 z-0 w-2/3 h-full bg-body-border-dark"></div>
 			<div className="absolute right-0 z-0 w-1/3 h-full bg-body-border-light"></div>
-			<div className="relative bg-white h-body w-body">{children}</div>
+			<div className="relative flex flex-col bg-white h-body w-body">{children}</div>
 		</body>
 	);
 }
@@ -48,5 +53,23 @@ function Header() {
 				<a href="">About</a>
 			</nav>
 		</header>
+	);
+}
+
+function Footer() {
+	return (
+		<footer className="flex items-center justify-between pb-10 text-xl font-medium px-9">
+			<p>Based in Moscow, Russia</p>
+			<address>
+				<a href="mailto:hello@evgeniyastrakhantsev.com">hello@evgeniyastrakhantsev.com</a>
+			</address>
+			<div className="flex">
+				<SocialMediaLink socialMedia="Behance" className="mr-7" />
+				<SocialMediaLink socialMedia="Vimeo" className="mr-7" />
+				<SocialMediaLink socialMedia="Facebook" className="mr-7" />
+				<SocialMediaLink socialMedia="VK" className="mr-7" />
+				<SocialMediaLink socialMedia="LinkedIn" />
+			</div>
+		</footer>
 	);
 }
