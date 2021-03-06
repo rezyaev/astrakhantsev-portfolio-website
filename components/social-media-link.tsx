@@ -22,7 +22,7 @@ export function SocialMediaLink({ socialMedia, className }: SocialMediaLinkProps
 	};
 
 	return (
-		<a className={`${className} text-trueGray-900`} href="">
+		<a className={`${className} relative bg-white rounded-full text-trueGray-900`} href="">
 			{getLogo(socialMedia)}
 		</a>
 	);
