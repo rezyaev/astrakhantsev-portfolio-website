@@ -8,7 +8,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Header />
-			<main className="flex-1">
+			<main className="relative flex-1">
 				<Component {...pageProps} />
 			</main>
 			<Footer />
