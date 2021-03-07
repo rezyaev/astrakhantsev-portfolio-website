@@ -9,11 +9,14 @@ module.exports = {
 				24: "24px",
 			},
 			width: {
-				body: "calc(100% - 48px)",
+				1.5: "0.375rem",
 				128: "32rem",
 			},
 			height: {
-				body: "calc(100% - 48px)",
+				1.5: "0.375rem",
+			},
+			top: {
+				2.5: "0.625rem",
 			},
 			colors: {
 				"body-border-light": "#FFDF75",

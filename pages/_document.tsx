@@ -9,9 +9,9 @@ export default class MyDocument extends Document {
 					<style>
 						{`
 							#__next {
+								flex: 1 1 0%;
 								display: flex;
 								flex-direction: column;
-								height: 100%;
 							}
 						`}
 					</style>
@@ -28,10 +28,10 @@ export default class MyDocument extends Document {
 type BodyProps = { children: JSX.Element[] };
 function Body({ children }: BodyProps) {
 	return (
-		<body className="relative grid h-full place-items-center text-trueGray-900">
-			<div className="absolute left-0 z-0 w-2/3 h-full bg-body-border-dark"></div>
-			<div className="absolute right-0 z-0 w-1/3 h-full bg-body-border-light"></div>
-			<div className="relative bg-white h-body w-body">{children}</div>
+		<body className="flex min-h-full p-6 text-trueGray-900">
+			<div className="fixed top-0 bottom-0 left-0 z-0 w-2/3 bg-body-border-dark"></div>
+			<div className="fixed top-0 bottom-0 right-0 z-0 w-1/3 bg-body-border-light"></div>
+			<div className="relative flex flex-1 bg-white">{children}</div>
 		</body>
 	);
 }
