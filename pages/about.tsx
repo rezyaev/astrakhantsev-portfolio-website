@@ -1,35 +1,34 @@
+import { fetchPerson, Person } from "lib/api";
+import { formatPhoneNumber } from "lib/formatters";
+import { GetStaticProps } from "next";
 import Image from "next/image";
 
-export default function About() {
+type AboutProps = { person: Person };
+export default function About({ person }: AboutProps) {
 	return (
 		<div className="flex flex-col h-full">
 			<div className="flex justify-between">
 				<div className="box-content max-w-sm pt-12 pb-24 pl-32 text-xl">
-					<p className="mb-12 leading-8">
-						I’m a freelance animation director & animator. I work closely with clients & other
-						creative teams from around the globe to solve problems big & small.
-					</p>
+					<p className="mb-12 leading-8">{person.description}</p>
 
 					<h2 className="mb-4 font-bold">Skills</h2>
 					<ul className="leading-8 list-inside list-dash">
-						<li>Animation Direction</li>
-						<li>Art Direction</li>
-						<li>Illustration/Character design</li>
-						<li>Cel/Character animation</li>
-						<li>Motion Design/2D animation</li>
+						{person.skills.map((skill) => (
+							<li key={skill}>{skill}</li>
+						))}
 					</ul>
 				</div>
 
 				<Image src="/images/workplace.jpg" alt="Workplace" width="512" height="512" />
 			</div>
 
-			<div className="relative flex-1 pt-8 pl-32 text-2xl text-white bg-trueGray-900">
+			<div className="relative flex-1 py-8 pl-32 text-2xl text-white bg-trueGray-900">
 				<address className="not-italic">
 					<a className="block mb-1" href="mailto:hello@evgeniyastrakhantsev.com">
-						hello@evgeniyastrakhantsev.com
+						{person.email}
 					</a>
-					<a className="block" href="tel:+79998297951">
-						+7 999 829-79-51
+					<a className="block" href={`tel:${person.phoneNumber}`}>
+						{formatPhoneNumber(person.phoneNumber)}
 					</a>
 				</address>
 
@@ -58,3 +57,8 @@ function ArrowIcon({ className }: ArrowIconProps) {
 		</svg>
 	);
 }
+
+export const getStaticProps: GetStaticProps = async function () {
+	const person = await fetchPerson();
+	return { props: { person } };
+};
