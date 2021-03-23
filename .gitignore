@@ -36,3 +36,4 @@ yarn-error.log*
 # sanity
 /sanity/node_modules
 /sanity/dist
+/sanity/.env.*
