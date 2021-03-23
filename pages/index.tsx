@@ -8,7 +8,7 @@ export default function HomePage({ caseStudies }: HomeProps) {
 	return (
 		<>
 			<div className="absolute top-4 left-4">
-				<Link href={`/${caseStudies[0].title.replaceAll(" ", "-")}`}>
+				<Link href={`/${caseStudies[0].title.replace(/\s/g, "-")}`}>
 					<a>
 						<Image src="/images/yandex-money.png" alt="Yandex Money" width="400" height="340" />
 					</a>

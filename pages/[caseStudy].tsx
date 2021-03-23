@@ -70,14 +70,14 @@ const ListItem: React.FC = function ({ children }) {
 export const getStaticPaths: GetStaticPaths = async function () {
 	const caseStudies = await fetchCaseStudies();
 	const paths = caseStudies.map((caseStudy) => ({
-		params: { caseStudy: caseStudy.title.replaceAll(" ", "-") },
+		params: { caseStudy: caseStudy.title.replace(/\s/g, "-") },
 	}));
 
 	return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async function (context) {
-	const caseStudyTitle = (context.params as { caseStudy: string }).caseStudy.replaceAll("-", " ");
+	const caseStudyTitle = (context.params as { caseStudy: string }).caseStudy.replace(/-/g, " ");
 	const caseStudies = await fetchCaseStudies();
 	const caseStudy = caseStudies.find((study) => study.title === caseStudyTitle);
 
