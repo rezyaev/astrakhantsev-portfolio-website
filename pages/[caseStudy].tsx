@@ -2,6 +2,8 @@ import { CaseStudy, CaseStudySection, fetchCaseStudies } from "lib/api";
 import { sanityImageRefToUrl } from "lib/utils";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
+import BlockContent from "@sanity/block-content-to-react";
+import React from "react";
 
 type CaseStudyProps = { caseStudy: CaseStudy };
 export default function CaseStudyPage({ caseStudy }: CaseStudyProps) {
@@ -41,7 +43,13 @@ function Section({ section, index }: SectionProps) {
 
 				<div className={`text-xl ${section.isDark ? "text-white" : "text-black"}`}>
 					<h2 className="text-3xl font-bold mb-7">{section.header}</h2>
-					<p>{section.text}</p>
+					<div>
+						<BlockContent
+							blocks={section.text}
+							className="grid gap-8"
+							serializers={{ listItem: ListItem }}
+						/>
+					</div>
 				</div>
 
 				{!isEven && <div className="flex-shrink-0">{image}</div>}
@@ -50,15 +58,14 @@ function Section({ section, index }: SectionProps) {
 	);
 }
 
-// type ListItemProps = { children: string };
-// function ListItem({ children }: ListItemProps) {
-// 	return (
-// 		<li className="relative pl-5 mb-6 list-none last:mb-0">
-// 			<span className="absolute inline-block w-1.5 h-1.5 transform rotate-45 bg-black top-2.5 left-0"></span>
-// 			{children}
-// 		</li>
-// 	);
-// }
+const ListItem: React.FC = function ({ children }) {
+	return (
+		<li className="relative pl-5 mb-6 list-none last:mb-0">
+			<span className="absolute inline-block w-1.5 h-1.5 transform rotate-45 bg-black top-2.5 left-0"></span>
+			{children}
+		</li>
+	);
+};
 
 export const getStaticPaths: GetStaticPaths = async function () {
 	const caseStudies = await fetchCaseStudies();

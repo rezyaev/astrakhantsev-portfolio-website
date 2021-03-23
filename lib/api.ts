@@ -1,3 +1,5 @@
+import { Block } from "@sanity/block-content-to-react";
+
 type DocumentSanityInternals<T> = {
 	_id: string;
 	_createdAt: string;
@@ -50,7 +52,7 @@ export type CaseStudy = DocumentSanityInternals<"caseStudy"> & {
 
 export type CaseStudySection = ArrayItemSanityInternals & {
 	header: string;
-	text: string;
+	text: Block | Block[];
 	image: SanityImage;
 	isDark: boolean;
 };
