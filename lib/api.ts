@@ -1,4 +1,24 @@
-export type Person = SanityInternals & {
+type DocumentSanityInternals<T> = {
+	_id: string;
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	_type: T;
+};
+
+type ArrayItemSanityInternals = {
+	_key: string;
+};
+
+type SanityImage = {
+	_type: "image";
+	asset: {
+		_ref: string;
+		_type: "reference";
+	};
+};
+
+export type Person = DocumentSanityInternals<"person"> & {
 	name: string;
 	role: string;
 	email: string;
@@ -15,23 +35,34 @@ export type Person = SanityInternals & {
 	};
 };
 
-type SanityInternals = {
-	_id: string;
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	_type: "person";
-};
-
 export async function fetchPerson() {
-	const response = await api<Person>(
-		"https://6bp6zlw9.apicdn.sanity.io/v1/data/query/production?query=*[_type == 'person']"
-	);
+	const response = await api<Person>("*[_type == 'person']");
 
 	return response.result[0];
 }
 
-async function api<T>(url: string) {
+export type CaseStudy = DocumentSanityInternals<"caseStudy"> & {
+	title: string;
+	description: string;
+	vimeoEmbedCode: string;
+	sections: CaseStudySection[];
+};
+
+export type CaseStudySection = ArrayItemSanityInternals & {
+	header: string;
+	text: string;
+	image: SanityImage;
+	isDark: boolean;
+};
+
+export async function fetchCaseStudies() {
+	const response = await api<CaseStudy>("*[_type == 'caseStudy']");
+
+	return response.result;
+}
+
+async function api<T>(query: string) {
+	const url = `https://6bp6zlw9.apicdn.sanity.io/v1/data/query/production?query=${query}`;
 	const response = await fetch(url).then((res) => res.json());
 	return response as { ms: number; query: string; result: T[] };
 }

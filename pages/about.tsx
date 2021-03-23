@@ -1,10 +1,10 @@
 import { fetchPerson, Person } from "lib/api";
-import { formatPhoneNumber } from "lib/formatters";
+import { formatPhoneNumber } from "lib/utils";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 
 type AboutProps = { person: Person };
-export default function About({ person }: AboutProps) {
+export default function AboutPage({ person }: AboutProps) {
 	return (
 		<div className="flex flex-col h-full">
 			<div className="flex justify-between">
